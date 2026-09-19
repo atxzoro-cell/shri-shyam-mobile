@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SHRI SHYAM MOBILE & REPAIR</title>
-<meta name="description" content="SHRI SHYAM MOBILE & REPAIR — Mobile, Accessories & Repairing">
+
+<meta name="description"
+content="SHRI SHYAM MOBILE & REPAIR — Mobile, Accessories & Repairing">
 
 <style>
 :root{
@@ -34,8 +36,7 @@ body{
   line-height:1.5;
 }
 
-button,
-input{
+button,input{
   font:inherit;
 }
 
@@ -331,7 +332,7 @@ main{
   font-size:14px;
 }
 
-/* EMPTY / LOADING */
+/* MESSAGE */
 
 .message{
   text-align:center;
@@ -350,7 +351,9 @@ main{
 }
 
 @keyframes spin{
-  to{transform:rotate(360deg)}
+  to{
+    transform:rotate(360deg);
+  }
 }
 
 /* FOOTER */
@@ -384,12 +387,15 @@ footer{
 /* MOBILE */
 
 @media(max-width:900px){
+
   .grid{
     grid-template-columns:repeat(3,1fr);
   }
+
 }
 
 @media(max-width:650px){
+
   .header-inner{
     align-items:flex-start;
     flex-direction:column;
@@ -420,12 +426,15 @@ footer{
   main{
     padding-top:32px;
   }
+
 }
 
 @media(max-width:380px){
+
   .grid{
     grid-template-columns:1fr;
   }
+
 }
 </style>
 </head>
@@ -433,71 +442,155 @@ footer{
 <body>
 
 <header>
+
   <div class="header-inner">
+
     <div>
-      <div class="logo">SHRI SHYAM <span>MOBILE & REPAIR</span></div>
-      <div class="tagline" id="headerTagline">Mobile • Accessories • Repairing</div>
+
+      <div class="logo">
+        SHRI SHYAM <span>MOBILE & REPAIR</span>
+      </div>
+
+      <div
+        class="tagline"
+        id="headerTagline"
+      >
+        Mobile • Accessories • Repairing
+      </div>
+
     </div>
+
   </div>
+
 </header>
 
+
 <section class="hero">
+
   <div class="hero-inner">
-    <h1>Mobile, Accessories & Repairing</h1>
+
+    <h1>
+      Mobile, Accessories & Repairing
+    </h1>
+
     <p>
       Check our available products and services.
-      For price, availability or pre-order, contact us directly on WhatsApp.
+      For price, availability or pre-order,
+      contact us directly on WhatsApp.
     </p>
+
   </div>
+
 </section>
 
+
 <div class="search-area">
+
   <div class="search-box">
+
     🔍
+
     <input
       id="search"
       type="search"
       placeholder="Search mobile, accessory or repair..."
     >
+
   </div>
+
 </div>
+
 
 <main>
 
   <div class="tabs">
-    <button class="tab active" data-section="MOBILE">📱 Mobiles</button>
-    <button class="tab" data-section="ACCESSORIES">🎧 Accessories</button>
-    <button class="tab" data-section="REPAIRING">🔧 Repairing</button>
+
+    <button
+      class="tab active"
+      data-section="MOBILE"
+    >
+      📱 Mobiles
+    </button>
+
+    <button
+      class="tab"
+      data-section="ACCESSORIES"
+    >
+      🎧 Accessories
+    </button>
+
+    <button
+      class="tab"
+      data-section="REPAIRING"
+    >
+      🔧 Repairing
+    </button>
+
   </div>
 
-  <div id="filters" class="filters"></div>
+
+  <div
+    id="filters"
+    class="filters"
+  ></div>
+
 
   <div id="content">
+
     <div class="message">
+
       <div class="spinner"></div>
+
       Loading products...
+
     </div>
+
   </div>
 
 </main>
 
+
 <footer>
+
   <div class="footer-inner">
-    <div>
-      <div class="footer-title" id="footerShop">
-        SHRI SHYAM MOBILE & REPAIR
-      </div>
-      <div class="footer-text" id="footerTagline">
-        Mobile • Accessories • Repairing
-      </div>
-    </div>
 
     <div>
-      <div class="footer-text" id="footerAddress"></div>
-      <div class="footer-text" id="footerPhone"></div>
+
+      <div
+        class="footer-title"
+        id="footerShop"
+      >
+        SHRI SHYAM MOBILE & REPAIR
+      </div>
+
+      <div
+        class="footer-text"
+        id="footerTagline"
+      >
+        Mobile • Accessories • Repairing
+      </div>
+
     </div>
+
+
+    <div>
+
+      <div
+        class="footer-text"
+        id="footerAddress"
+      ></div>
+
+      <div
+        class="footer-text"
+        id="footerPhone"
+      ></div>
+
+    </div>
+
   </div>
+
 </footer>
+
 
 <script>
 
@@ -508,33 +601,52 @@ footer{
 const SHEET_ID =
   "1bad8TO5Ek1sEIpCfUaRZGRHuCvVjNKqadXPmsUEzhds";
 
+
 const SHEETS = {
-  MOBILE: "MOBILE",
-  ACCESSORIES: "ACCESSORIES",
-  REPAIRING: "REPAIRING",
-  CATEGORY: "CATEGORY",
-  WEB_SETTINGS: "WEB_SETTINGS"
+
+  MOBILE:"MOBILE",
+
+  ACCESSORIES:"ACCESSORIES",
+
+  REPAIRING:"REPAIRING",
+
+  CATEGORY:"CATEGORY",
+
+  WEB_SETTINGS:"WEB_SETTINGS"
+
 };
 
 
 /* =========================================================
-   APP STATE
+   APP DATA
 ========================================================= */
 
 let DATA = {
-  MOBILE: [],
-  ACCESSORIES: [],
-  REPAIRING: [],
-  CATEGORY: [],
-  WEB_SETTINGS: {}
+
+  MOBILE:[],
+
+  ACCESSORIES:[],
+
+  REPAIRING:[],
+
+  CATEGORY:[],
+
+  WEB_SETTINGS:{},
+
+  settings:{},
+
+  categoryMap:{}
+
 };
 
+
 let currentSection = "MOBILE";
+
 let currentBrand = "ALL";
 
 
 /* =========================================================
-   GOOGLE GVIZ READER
+   READ GOOGLE SHEET
 ========================================================= */
 
 async function readSheet(sheetName){
@@ -545,79 +657,145 @@ async function readSheet(sheetName){
     "/gviz/tq?tqx=out:json&sheet=" +
     encodeURIComponent(sheetName);
 
-  const response = await fetch(url);
+
+  const response =
+    await fetch(url);
+
 
   if(!response.ok){
-    throw new Error("Could not read " + sheetName);
+
+    throw new Error(
+      "Could not read " + sheetName
+    );
+
   }
 
-  const text = await response.text();
 
-  const start = text.indexOf("{");
-  const end = text.lastIndexOf("}");
+  const text =
+    await response.text();
+
+
+  const start =
+    text.indexOf("{");
+
+
+  const end =
+    text.lastIndexOf("}");
+
 
   if(start === -1 || end === -1){
-    throw new Error("Invalid Google Sheet response");
+
+    throw new Error(
+      "Invalid Google Sheet response"
+    );
+
   }
 
-  const json = JSON.parse(text.substring(start,end + 1));
 
-  const cols = json.table.cols.map(c =>
-    (c.label || "").trim()
-  );
+  const json =
+    JSON.parse(
+      text.substring(
+        start,
+        end + 1
+      )
+    );
+
+
+  const cols =
+    json.table.cols.map(
+      c => (c.label || "").trim()
+    );
+
 
   return json.table.rows.map(row => {
 
     const obj = {};
 
-    cols.forEach((col,i) => {
+
+    cols.forEach((col,index) => {
+
       if(!col) return;
 
+
       obj[col] =
-        row.c[i] && row.c[i].v !== null
-          ? row.c[i].v
+        row.c[index] &&
+        row.c[index].v !== null
+          ? row.c[index].v
           : "";
+
     });
 
+
     return obj;
+
   });
+
 }
 
 
 /* =========================================================
-   NORMALIZE COLUMN NAMES
+   GET VALUE FROM ROW
 ========================================================= */
 
-function getValue(row, names){
+function getValue(row,names){
 
-  const keys = Object.keys(row);
+  const keys =
+    Object.keys(row);
+
 
   for(const wanted of names){
 
-    const found = keys.find(k =>
-      k.trim().toUpperCase() === wanted.toUpperCase()
-    );
+    const found =
+      keys.find(
+        key =>
+          key.trim().toUpperCase() ===
+          wanted.toUpperCase()
+      );
+
 
     if(found){
+
       return row[found];
+
     }
+
   }
 
+
   return "";
+
 }
 
 
+/* =========================================================
+   NUMBER
+========================================================= */
+
 function numberValue(value){
 
-  if(value === null || value === undefined || value === ""){
+  if(
+    value === null ||
+    value === undefined ||
+    value === ""
+  ){
+
     return 0;
+
   }
 
-  const n = Number(
-    String(value).replace(/,/g,"").replace(/[^\d.-]/g,"")
-  );
 
-  return isNaN(n) ? 0 : n;
+  const number =
+    Number(
+      String(value)
+        .replace(/,/g,"")
+        .replace(/[^\d.-]/g,"")
+    );
+
+
+  return isNaN(number)
+    ? 0
+    : number;
+
 }
 
 
@@ -627,110 +805,198 @@ function numberValue(value){
 
 function settingsObject(rows){
 
-  const obj = {};
+  const settings = {};
+
 
   rows.forEach(row => {
 
     const key =
-      String(getValue(row,["SETTING","KEY","NAME"])).trim();
+      String(
+        getValue(
+          row,
+          [
+            "SETTING",
+            "KEY",
+            "NAME"
+          ]
+        )
+      ).trim();
+
 
     const value =
-      getValue(row,["VALUE","DATA"]);
+      getValue(
+        row,
+        [
+          "VALUE",
+          "DATA"
+        ]
+      );
+
 
     if(key){
-      obj[key.toUpperCase()] = value;
+
+      settings[
+        key.toUpperCase()
+      ] = value;
+
     }
 
   });
 
-  return obj;
+
+  return settings;
+
 }
 
 
 /* =========================================================
-   CATEGORY / BRAND
+   CATEGORY MAP
 ========================================================= */
 
 function buildCategoryMap(rows){
 
   const map = {};
 
+
   rows.forEach(row => {
 
     const name =
-      String(getValue(row,[
-        "CATEGORY",
-        "BRAND",
-        "NAME"
-      ])).trim();
+      String(
+        getValue(
+          row,
+          [
+            "CATEGORY",
+            "BRAND",
+            "NAME"
+          ]
+        )
+      ).trim();
+
 
     const id =
-      String(getValue(row,[
-        "IDM",
-        "ID",
-        "CODE"
-      ])).trim();
+      String(
+        getValue(
+          row,
+          [
+            "IDM",
+            "ID",
+            "CODE"
+          ]
+        )
+      ).trim();
+
 
     if(name){
-      map[id || name] = name;
+
+      map[id || name] =
+        name;
+
     }
 
   });
 
+
   return map;
-}
 
-
-function getBrand(row){
-
-  const direct =
-    String(getValue(row,[
-      "BRAND",
-      "COMPANY",
-      "MAKE"
-    ])).trim();
-
-  if(direct) return direct;
-
-  const category =
-    String(getValue(row,[
-      "CATEGORY",
-      "BRAND ID",
-      "CATEGORY ID",
-      "IDM"
-    ])).trim();
-
-  if(DATA.categoryMap && DATA.categoryMap[category]){
-    return DATA.categoryMap[category];
-  }
-
-  return "";
 }
 
 
 /* =========================================================
-   IMAGES
+   BRAND
+========================================================= */
+
+function getBrand(row){
+
+  const direct =
+    String(
+      getValue(
+        row,
+        [
+          "BRAND",
+          "COMPANY",
+          "MAKE"
+        ]
+      )
+    ).trim();
+
+
+  if(direct){
+
+    return direct;
+
+  }
+
+
+  const category =
+    String(
+      getValue(
+        row,
+        [
+          "CATEGORY",
+          "BRAND ID",
+          "CATEGORY ID",
+          "IDM"
+        ]
+      )
+    ).trim();
+
+
+  if(
+    DATA.categoryMap &&
+    DATA.categoryMap[category]
+  ){
+
+    return DATA.categoryMap[
+      category
+    ];
+
+  }
+
+
+  return "";
+
+}
+
+
+/* =========================================================
+   PRODUCT IMAGES
 ========================================================= */
 
 function getImages(row){
 
   const images = [];
 
+
   for(let i=1;i<=5;i++){
 
-    const value = getValue(row,[
-      "IMAGE-" + i,
-      "IMAGE-" + i + " ",
-      "IMAGE_" + i,
-      "IMAGE_" + i + " "
-    ]);
+    const value =
+      getValue(
+        row,
+        [
+          "IMAGE-" + i,
+          "IMAGE-" + i + " ",
+          "IMAGE_" + i,
+          "IMAGE_" + i + " "
+        ]
+      );
 
-    if(value && String(value).trim()){
-      images.push(String(value).trim());
+
+    if(
+      value &&
+      String(value).trim()
+    ){
+
+      images.push(
+        String(value).trim()
+      );
+
     }
+
   }
 
+
   return images;
+
 }
 
 
@@ -741,10 +1007,12 @@ function getImages(row){
 function whatsapp(message){
 
   const phone =
-    String(DATA.settings.WHATSAPP ||
-           DATA.settings.PHONE ||
-           "9565772595")
-      .replace(/\D/g,"");
+    String(
+      DATA.settings.WHATSAPP ||
+      DATA.settings.PHONE ||
+      "9565772595"
+    ).replace(/\D/g,"");
+
 
   const url =
     "https://wa.me/91" +
@@ -752,125 +1020,249 @@ function whatsapp(message){
     "?text=" +
     encodeURIComponent(message);
 
-  window.open(url,"_blank");
+
+  window.open(
+    url,
+    "_blank"
+  );
+
 }
 
 
 /* =========================================================
-   PRODUCT MESSAGE
+   PRODUCT WHATSAPP
 ========================================================= */
 
 function productWhatsApp(row){
 
   const name =
-    getValue(row,[
-      "PRODUCT",
-      "PRODUCT NAME",
-      "NAME",
-      "MODEL",
-      "ITEM"
-    ]);
+    getValue(
+      row,
+      [
+        "PRODUCT",
+        "PRODUCT NAME",
+        "NAME",
+        "MODEL",
+        "ITEM"
+      ]
+    );
 
-  const brand = getBrand(row);
+
+  const brand =
+    getBrand(row);
+
 
   const ram =
-    getValue(row,["RAM"]);
+    getValue(
+      row,
+      ["RAM"]
+    );
+
 
   const storage =
-    getValue(row,[
-      "STORAGE",
-      "ROM"
-    ]);
+    getValue(
+      row,
+      [
+        "STORAGE",
+        "ROM"
+      ]
+    );
+
 
   const price =
-    getValue(row,[
-      "PRICE",
-      "SELLING PRICE",
-      "SALE PRICE"
-    ]);
+    getValue(
+      row,
+      [
+        "PRICE",
+        "SELLING PRICE",
+        "SALE PRICE"
+      ]
+    );
+
 
   const qty =
-    numberValue(getValue(row,[
-      "QTY",
-      "QUANTITY",
-      "STOCK"
-    ]));
+    numberValue(
+      getValue(
+        row,
+        [
+          "QTY",
+          "QUANTITY",
+          "STOCK"
+        ]
+      )
+    );
+
 
   let message =
     "Hello, I am interested in this item:\n\n" +
-    "Product: " + name;
+    "Product: " +
+    name;
+
 
   if(brand){
-    message += "\nBrand: " + brand;
+
+    message +=
+      "\nBrand: " +
+      brand;
+
   }
+
 
   if(ram){
-    message += "\nRAM: " + ram;
+
+    message +=
+      "\nRAM: " +
+      ram;
+
   }
+
 
   if(storage){
-    message += "\nStorage: " + storage;
+
+    message +=
+      "\nStorage: " +
+      storage;
+
   }
+
 
   if(price){
-    message += "\nPrice: ₹" + price;
+
+    message +=
+      "\nPrice: ₹" +
+      price;
+
   }
 
+
   if(qty <= 0){
+
     message +=
       "\n\nThis item is currently OUT OF STOCK." +
       "\nPlease check availability / pre-order.";
+
   }else{
-    message += "\n\nPlease confirm availability.";
+
+    message +=
+      "\n\nPlease confirm availability.";
+
   }
 
+
   whatsapp(message);
+
 }
 
 
 /* =========================================================
-   REPAIR MESSAGE
+   REPAIR WHATSAPP
+   NOW ASKS MOBILE MODEL FIRST
 ========================================================= */
 
 function repairWhatsApp(row){
 
   const service =
-    getValue(row,[
-      "SERVICE",
-      "PRODUCT",
-      "NAME",
-      "REPAIR"
-    ]);
+    getValue(
+      row,
+      [
+        "SERVICE",
+        "PRODUCT",
+        "NAME",
+        "REPAIR"
+      ]
+    ) ||
+    "Repair Service";
 
-  const askModel =
-    String(getValue(row,[
-      "ASK_MODEL",
-      "ASK MODEL"
-    ])).toLowerCase();
 
-  let message =
-    "Hello, I want to enquire about mobile repairing.\n\n" +
-    "Service: " + service;
+  const model =
+    prompt(
+      "Which mobile model do you want to repair?"
+    );
 
-  if(askModel !== "no"){
-    message += "\nMy mobile model is: ";
+
+  /* CANCEL */
+
+  if(model === null){
+
+    return;
+
   }
 
+
+  const cleanModel =
+    model.trim();
+
+
+  /* EMPTY */
+
+  if(!cleanModel){
+
+    alert(
+      "Please enter your mobile model."
+    );
+
+    return;
+
+  }
+
+
+  const message =
+    "Hello, I want to enquire about mobile repairing.\n\n" +
+
+    "Service: " +
+    service +
+
+    "\nMobile Model: " +
+    cleanModel +
+
+    "\n\nPlease provide repair cost and availability.";
+
+
   whatsapp(message);
+
 }
 
 
 /* =========================================================
-   FORMAT PRICE
+   MONEY
 ========================================================= */
 
 function money(value){
 
-  const n = numberValue(value);
+  const number =
+    numberValue(value);
 
-  if(!n) return "";
 
-  return "₹" + n.toLocaleString("en-IN");
+  if(!number){
+
+    return "";
+
+  }
+
+
+  return (
+    "₹" +
+    number.toLocaleString("en-IN")
+  );
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(value){
+
+  return String(
+    value ?? ""
+  )
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
+
 }
 
 
@@ -881,117 +1273,241 @@ function money(value){
 function productCard(row){
 
   const name =
-    getValue(row,[
-      "PRODUCT",
-      "PRODUCT NAME",
-      "NAME",
-      "MODEL",
-      "ITEM"
-    ]) || "Product";
+    getValue(
+      row,
+      [
+        "PRODUCT",
+        "PRODUCT NAME",
+        "NAME",
+        "MODEL",
+        "ITEM"
+      ]
+    ) ||
+    "Product";
 
-  const brand = getBrand(row);
+
+  const brand =
+    getBrand(row);
+
 
   const ram =
-    getValue(row,["RAM"]);
+    getValue(
+      row,
+      ["RAM"]
+    );
+
 
   const storage =
-    getValue(row,[
-      "STORAGE",
-      "ROM"
-    ]);
+    getValue(
+      row,
+      [
+        "STORAGE",
+        "ROM"
+      ]
+    );
+
 
   const price =
-    getValue(row,[
-      "PRICE",
-      "SELLING PRICE",
-      "SALE PRICE"
-    ]);
+    getValue(
+      row,
+      [
+        "PRICE",
+        "SELLING PRICE",
+        "SALE PRICE"
+      ]
+    );
+
 
   const mrp =
-    getValue(row,[
-      "MRP",
-      "MAX PRICE"
-    ]);
+    getValue(
+      row,
+      [
+        "MRP",
+        "MAX PRICE"
+      ]
+    );
+
 
   const qty =
-    numberValue(getValue(row,[
-      "QTY",
-      "QUANTITY",
-      "STOCK"
-    ]));
+    numberValue(
+      getValue(
+        row,
+        [
+          "QTY",
+          "QUANTITY",
+          "STOCK"
+        ]
+      )
+    );
 
-  const images = getImages(row);
 
-  const image = images.length ? images[0] : "";
+  const images =
+    getImages(row);
+
+
+  const image =
+    images.length
+      ? images[0]
+      : "";
+
 
   const stockClass =
-    qty > 0 ? "in" : "out";
+    qty > 0
+      ? "in"
+      : "out";
+
 
   const stockText =
-    qty > 0 ? "IN STOCK" : "OUT OF STOCK";
+    qty > 0
+      ? "IN STOCK"
+      : "OUT OF STOCK";
+
 
   let specs = [];
 
-  if(ram) specs.push(ram);
-  if(storage) specs.push(storage);
+
+  if(ram){
+
+    specs.push(ram);
+
+  }
+
+
+  if(storage){
+
+    specs.push(storage);
+
+  }
+
 
   return `
+
     <article class="card">
 
       <div class="image-wrap">
 
         ${
           image
-          ? `<img
-              src="${escapeHtml(image)}"
-              alt="${escapeHtml(name)}"
-              loading="lazy"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-            >
-            <div class="placeholder" style="display:none">
-              No Image
-            </div>`
-          : `<div class="placeholder">No Image</div>`
+
+          ?
+
+          `
+          <img
+            src="${escapeHtml(image)}"
+            alt="${escapeHtml(name)}"
+            loading="lazy"
+            onerror="
+              this.style.display='none';
+              this.nextElementSibling.style.display='flex';
+            "
+          >
+
+          <div
+            class="placeholder"
+            style="display:none"
+          >
+            No Image
+          </div>
+          `
+
+          :
+
+          `
+          <div class="placeholder">
+            No Image
+          </div>
+          `
         }
 
-        <div class="stock ${stockClass}">
+
+        <div
+          class="stock ${stockClass}"
+        >
           ${stockText}
         </div>
 
       </div>
 
+
       <div class="card-body">
 
         ${
           brand
-          ? `<div class="brand">${escapeHtml(brand)}</div>`
-          : ""
+
+          ?
+
+          `
+          <div class="brand">
+            ${escapeHtml(brand)}
+          </div>
+          `
+
+          :
+
+          ""
         }
 
+
         <div class="name">
+
           ${escapeHtml(name)}
+
         </div>
+
 
         ${
           specs.length
-          ? `<div class="specs">${escapeHtml(specs.join(" • "))}</div>`
-          : ""
+
+          ?
+
+          `
+          <div class="specs">
+            ${escapeHtml(
+              specs.join(" • ")
+            )}
+          </div>
+          `
+
+          :
+
+          ""
         }
+
 
         ${
           price
-          ? `
-            <div class="price">
-              ${money(price)}
-              ${
-                mrp
-                ? `<span class="mrp">${money(mrp)}</span>`
-                : ""
-              }
-            </div>
+
+          ?
+
           `
-          : ""
+          <div class="price">
+
+            ${money(price)}
+
+            ${
+              mrp
+
+              ?
+
+              `
+              <span class="mrp">
+                ${money(mrp)}
+              </span>
+              `
+
+              :
+
+              ""
+            }
+
+          </div>
+          `
+
+          :
+
+          ""
         }
+
 
         <button
           class="wa-btn"
@@ -1003,7 +1519,9 @@ function productCard(row){
       </div>
 
     </article>
+
   `;
+
 }
 
 
@@ -1014,22 +1532,34 @@ function productCard(row){
 function repairCard(row){
 
   const service =
-    getValue(row,[
-      "SERVICE",
-      "PRODUCT",
-      "NAME",
-      "REPAIR"
-    ]) || "Repair Service";
+    getValue(
+      row,
+      [
+        "SERVICE",
+        "PRODUCT",
+        "NAME",
+        "REPAIR"
+      ]
+    ) ||
+    "Repair Service";
+
 
   return `
+
     <article class="repair-card">
 
-      <h3>🔧 ${escapeHtml(service)}</h3>
+      <h3>
+        🔧
+        ${escapeHtml(service)}
+      </h3>
+
 
       <p>
-        Contact us on WhatsApp for repair cost,
-        availability and details.
+        Contact us on WhatsApp for
+        repair cost, availability
+        and details.
       </p>
+
 
       <button
         class="wa-btn"
@@ -1039,7 +1569,9 @@ function repairCard(row){
       </button>
 
     </article>
+
   `;
+
 }
 
 
@@ -1050,12 +1582,21 @@ function repairCard(row){
 function renderFilters(){
 
   const box =
-    document.getElementById("filters");
+    document.getElementById(
+      "filters"
+    );
 
-  if(currentSection !== "MOBILE"){
+
+  if(
+    currentSection !== "MOBILE"
+  ){
+
     box.innerHTML = "";
+
     return;
+
   }
+
 
   const brands = [
     ...new Set(
@@ -1065,126 +1606,196 @@ function renderFilters(){
     )
   ].sort();
 
+
   if(!brands.length){
+
     box.innerHTML = "";
+
     return;
+
   }
 
+
   box.innerHTML = `
+
     <button
-      class="filter ${currentBrand === "ALL" ? "active" : ""}"
+      class="filter ${
+        currentBrand === "ALL"
+          ? "active"
+          : ""
+      }"
       onclick="setBrand('ALL')"
     >
       All Brands
     </button>
 
+
     ${
-      brands.map(brand => `
-        <button
-          class="filter ${currentBrand === brand ? "active" : ""}"
-          onclick='setBrand(${JSON.stringify(brand)})'
-        >
-          ${escapeHtml(brand)}
-        </button>
-      `).join("")
+      brands
+        .map(
+          brand => `
+
+            <button
+              class="filter ${
+                currentBrand === brand
+                  ? "active"
+                  : ""
+              }"
+              onclick='setBrand(
+                ${JSON.stringify(brand)}
+              )'
+            >
+              ${escapeHtml(brand)}
+            </button>
+
+          `
+        )
+        .join("")
     }
+
   `;
-}
 
-
-function setBrand(brand){
-
-  currentBrand = brand;
-
-  renderFilters();
-  renderContent();
 }
 
 
 /* =========================================================
-   CONTENT
+   SET BRAND
+========================================================= */
+
+function setBrand(brand){
+
+  currentBrand =
+    brand;
+
+  renderFilters();
+
+  renderContent();
+
+}
+
+
+/* =========================================================
+   RENDER CONTENT
 ========================================================= */
 
 function renderContent(){
 
   const box =
-    document.getElementById("content");
+    document.getElementById(
+      "content"
+    );
+
 
   const search =
-    document.getElementById("search")
+    document
+      .getElementById("search")
       .value
       .trim()
       .toLowerCase();
 
-  let rows =
-    DATA[currentSection] || [];
 
-  if(currentSection === "MOBILE" &&
-     currentBrand !== "ALL"){
+  let rows =
+    DATA[currentSection] ||
+    [];
+
+
+  /* BRAND FILTER */
+
+  if(
+    currentSection === "MOBILE" &&
+    currentBrand !== "ALL"
+  ){
 
     rows =
-      rows.filter(row =>
-        getBrand(row) === currentBrand
+      rows.filter(
+        row =>
+          getBrand(row) ===
+          currentBrand
       );
+
   }
+
+
+  /* SEARCH */
 
   if(search){
 
     rows =
-      rows.filter(row =>
-        JSON.stringify(row)
-          .toLowerCase()
-          .includes(search)
+      rows.filter(
+        row =>
+          JSON.stringify(row)
+            .toLowerCase()
+            .includes(search)
       );
+
   }
+
+
+  /* EMPTY */
 
   if(!rows.length){
 
     box.innerHTML = `
+
       <div class="message">
+
         No items found.
+
       </div>
+
     `;
 
     return;
+
   }
 
-  if(currentSection === "REPAIRING"){
+
+  /* REPAIRING */
+
+  if(
+    currentSection === "REPAIRING"
+  ){
 
     box.innerHTML = `
+
       <div class="grid">
-        ${rows.map(repairCard).join("")}
+
+        ${
+          rows
+            .map(repairCard)
+            .join("")
+        }
+
       </div>
+
     `;
 
     return;
+
   }
 
+
+  /* PRODUCTS */
+
   box.innerHTML = `
+
     <div class="grid">
-      ${rows.map(productCard).join("")}
+
+      ${
+        rows
+          .map(productCard)
+          .join("")
+      }
+
     </div>
+
   `;
+
 }
 
 
 /* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHtml(value){
-
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
-
-
-/* =========================================================
-   LOAD DATA
+   LOAD ALL DATA
 ========================================================= */
 
 async function loadData(){
@@ -1192,119 +1803,231 @@ async function loadData(){
   try{
 
     const [
+
       mobile,
+
       accessories,
+
       repairing,
+
       category,
+
       settings
+
     ] = await Promise.all([
 
-      readSheet(SHEETS.MOBILE),
-      readSheet(SHEETS.ACCESSORIES),
-      readSheet(SHEETS.REPAIRING),
-      readSheet(SHEETS.CATEGORY),
-      readSheet(SHEETS.WEB_SETTINGS)
+      readSheet(
+        SHEETS.MOBILE
+      ),
+
+      readSheet(
+        SHEETS.ACCESSORIES
+      ),
+
+      readSheet(
+        SHEETS.REPAIRING
+      ),
+
+      readSheet(
+        SHEETS.CATEGORY
+      ),
+
+      readSheet(
+        SHEETS.WEB_SETTINGS
+      )
 
     ]);
 
-    DATA.MOBILE = mobile;
-    DATA.ACCESSORIES = accessories;
-    DATA.REPAIRING = repairing;
-    DATA.CATEGORY = category;
-    DATA.settings = settingsObject(settings);
+
+    DATA.MOBILE =
+      mobile;
+
+
+    DATA.ACCESSORIES =
+      accessories;
+
+
+    DATA.REPAIRING =
+      repairing;
+
+
+    DATA.CATEGORY =
+      category;
+
+
+    DATA.settings =
+      settingsObject(
+        settings
+      );
+
 
     DATA.categoryMap =
-      buildCategoryMap(category);
+      buildCategoryMap(
+        category
+      );
 
-    /* SHOP SETTINGS */
+
+    /* SHOP NAME */
 
     const shop =
       DATA.settings.SHOP_NAME ||
       "SHRI SHYAM MOBILE & REPAIR";
 
+
     const tagline =
       DATA.settings.TAGLINE ||
       "Mobile • Accessories • Repairing";
 
-    document.title = shop;
 
-    document.querySelector(".logo").innerHTML =
-      escapeHtml(shop);
+    document.title =
+      shop;
 
-    document.getElementById("headerTagline")
-      .textContent = tagline;
 
-    document.getElementById("footerShop")
-      .textContent = shop;
+    document.querySelector(
+      ".logo"
+    ).textContent =
+      shop;
 
-    document.getElementById("footerTagline")
-      .textContent = tagline;
 
-    document.getElementById("footerAddress")
-      .textContent =
-        DATA.settings.ADDRESS || "";
+    document.getElementById(
+      "headerTagline"
+    ).textContent =
+      tagline;
 
-    document.getElementById("footerPhone")
-      .textContent =
+
+    document.getElementById(
+      "footerShop"
+    ).textContent =
+      shop;
+
+
+    document.getElementById(
+      "footerTagline"
+    ).textContent =
+      tagline;
+
+
+    document.getElementById(
+      "footerAddress"
+    ).textContent =
+      DATA.settings.ADDRESS ||
+      "";
+
+
+    document.getElementById(
+      "footerPhone"
+    ).textContent =
+
+      DATA.settings.PHONE
+
+        ?
+
+        "📞 " +
         DATA.settings.PHONE
-          ? "📞 " + DATA.settings.PHONE
-          : "";
+
+        :
+
+        "";
+
 
     renderFilters();
+
     renderContent();
+
 
   }catch(error){
 
     console.error(error);
 
-    document.getElementById("content").innerHTML = `
+
+    document.getElementById(
+      "content"
+    ).innerHTML = `
+
       <div class="message">
 
-        <h3>Unable to load products</h3>
+        <h3>
+          Unable to load products
+        </h3>
 
         <p style="margin-top:8px">
           Please try again in a moment.
         </p>
 
-        <p style="margin-top:8px;font-size:12px;color:#aaa">
+        <p
+          style="
+            margin-top:8px;
+            font-size:12px;
+            color:#aaa
+          "
+        >
           Google Sheet connection error
         </p>
 
       </div>
+
     `;
+
   }
+
 }
 
 
 /* =========================================================
-   EVENTS
+   TAB EVENTS
 ========================================================= */
 
-document.querySelectorAll(".tab")
-.forEach(button => {
+document
+  .querySelectorAll(".tab")
+  .forEach(button => {
 
-  button.addEventListener("click",() => {
+    button.addEventListener(
+      "click",
+      () => {
 
-    document.querySelectorAll(".tab")
-      .forEach(b => b.classList.remove("active"));
+        document
+          .querySelectorAll(".tab")
+          .forEach(
+            b =>
+              b.classList.remove(
+                "active"
+              )
+          );
 
-    button.classList.add("active");
 
-    currentSection =
-      button.dataset.section;
+        button.classList.add(
+          "active"
+        );
 
-    currentBrand = "ALL";
 
-    renderFilters();
-    renderContent();
+        currentSection =
+          button.dataset.section;
+
+
+        currentBrand =
+          "ALL";
+
+
+        renderFilters();
+
+        renderContent();
+
+      }
+    );
 
   });
 
-});
 
+/* =========================================================
+   SEARCH
+========================================================= */
 
-document.getElementById("search")
-.addEventListener("input",renderContent);
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    renderContent
+  );
 
 
 /* =========================================================
