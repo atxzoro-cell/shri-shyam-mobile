@@ -1,17 +1,1319 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SHRI SHYAM MOBILE & REPAIR</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SHRI SHYAM MOBILE & REPAIR</title>
+<meta name="description" content="SHRI SHYAM MOBILE & REPAIR — Mobile, Accessories & Repairing">
+
+<style>
+:root{
+  --pink:#f8d9e5;
+  --pink2:#fff3f7;
+  --pink3:#f1b8cc;
+  --black:#111;
+  --gray:#666;
+  --white:#fff;
+  --border:#ead5dd;
+  --green:#16803c;
+  --red:#b42318;
+  --shadow:0 8px 28px rgba(0,0,0,.08);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#fff;
+  color:var(--black);
+  line-height:1.5;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* HEADER */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+
+.header-inner{
+  max-width:1200px;
+  margin:auto;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.logo{
+  font-size:20px;
+  font-weight:900;
+  letter-spacing:.3px;
+}
+
+.logo span{
+  color:#b23a65;
+}
+
+.tagline{
+  color:var(--gray);
+  font-size:13px;
+}
+
+/* HERO */
+
+.hero{
+  background:linear-gradient(135deg,var(--pink2),var(--pink));
+  border-bottom:1px solid var(--border);
+}
+
+.hero-inner{
+  max-width:1200px;
+  margin:auto;
+  padding:55px 20px;
+}
+
+.hero h1{
+  font-size:clamp(30px,5vw,55px);
+  line-height:1.05;
+  max-width:800px;
+  margin-bottom:14px;
+}
+
+.hero p{
+  font-size:17px;
+  color:#555;
+  max-width:650px;
+}
+
+/* SEARCH */
+
+.search-area{
+  max-width:1200px;
+  margin:-24px auto 0;
+  padding:0 20px;
+  position:relative;
+  z-index:10;
+}
+
+.search-box{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  padding:10px;
+  display:flex;
+  align-items:center;
+}
+
+.search-box input{
+  width:100%;
+  border:0;
+  outline:0;
+  padding:12px 14px;
+  font-size:16px;
+  background:transparent;
+}
+
+/* MAIN */
+
+main{
+  max-width:1200px;
+  margin:auto;
+  padding:45px 20px 80px;
+}
+
+/* TABS */
+
+.tabs{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:5px;
+  margin-bottom:20px;
+}
+
+.tab{
+  border:1px solid var(--border);
+  background:#fff;
+  padding:11px 18px;
+  border-radius:999px;
+  cursor:pointer;
+  white-space:nowrap;
+  font-weight:700;
+}
+
+.tab.active{
+  background:var(--black);
+  color:#fff;
+  border-color:var(--black);
+}
+
+/* FILTER */
+
+.filters{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:28px;
+}
+
+.filter{
+  border:1px solid var(--border);
+  background:#fff;
+  padding:8px 13px;
+  border-radius:999px;
+  cursor:pointer;
+  font-size:13px;
+}
+
+.filter.active{
+  background:var(--pink);
+  border-color:var(--pink3);
+  font-weight:700;
+}
+
+/* GRID */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  transition:.2s ease;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow);
+}
+
+.image-wrap{
+  position:relative;
+  background:#f8f8f8;
+  aspect-ratio:1/1;
+  overflow:hidden;
+}
+
+.image-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.placeholder{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#aaa;
+  font-size:14px;
+  background:linear-gradient(135deg,#fafafa,#f1f1f1);
+}
+
+.stock{
+  position:absolute;
+  top:10px;
+  left:10px;
+  padding:5px 8px;
+  border-radius:7px;
+  font-size:11px;
+  font-weight:800;
+  background:#fff;
+}
+
+.stock.in{
+  color:var(--green);
+}
+
+.stock.out{
+  color:var(--red);
+}
+
+.card-body{
+  padding:15px;
+}
+
+.brand{
+  font-size:11px;
+  color:#888;
+  text-transform:uppercase;
+  letter-spacing:.7px;
+  margin-bottom:4px;
+}
+
+.name{
+  font-size:17px;
+  font-weight:800;
+  margin-bottom:7px;
+}
+
+.specs{
+  color:#666;
+  font-size:13px;
+  min-height:20px;
+}
+
+.price{
+  margin-top:12px;
+  font-size:19px;
+  font-weight:900;
+}
+
+.mrp{
+  color:#999;
+  text-decoration:line-through;
+  font-size:13px;
+  margin-left:5px;
+  font-weight:400;
+}
+
+.wa-btn{
+  display:block;
+  width:100%;
+  border:0;
+  background:#111;
+  color:white;
+  padding:11px;
+  border-radius:9px;
+  margin-top:13px;
+  cursor:pointer;
+  font-weight:800;
+}
+
+.wa-btn:hover{
+  background:#333;
+}
+
+/* REPAIR */
+
+.repair-card{
+  background:linear-gradient(135deg,#fff,#fff3f7);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:22px;
+}
+
+.repair-card h3{
+  font-size:19px;
+  margin-bottom:8px;
+}
+
+.repair-card p{
+  color:#666;
+  font-size:14px;
+}
+
+/* EMPTY / LOADING */
+
+.message{
+  text-align:center;
+  padding:60px 20px;
+  color:#777;
+}
+
+.spinner{
+  width:32px;
+  height:32px;
+  border:3px solid var(--pink);
+  border-top-color:#111;
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+  margin:0 auto 15px;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* FOOTER */
+
+footer{
+  background:#111;
+  color:#fff;
+}
+
+.footer-inner{
+  max-width:1200px;
+  margin:auto;
+  padding:35px 20px;
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  flex-wrap:wrap;
+}
+
+.footer-title{
+  font-weight:900;
+  font-size:18px;
+}
+
+.footer-text{
+  color:#bbb;
+  font-size:13px;
+  margin-top:5px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+  .grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:650px){
+  .header-inner{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:4px;
+  }
+
+  .hero-inner{
+    padding:40px 20px;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+
+  .card-body{
+    padding:12px;
+  }
+
+  .name{
+    font-size:15px;
+  }
+
+  .price{
+    font-size:17px;
+  }
+
+  main{
+    padding-top:32px;
+  }
+}
+
+@media(max-width:380px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <h1>SHRI SHYAM MOBILE & REPAIR</h1>
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="logo">SHRI SHYAM <span>MOBILE & REPAIR</span></div>
+      <div class="tagline" id="headerTagline">Mobile • Accessories • Repairing</div>
+    </div>
+  </div>
+</header>
 
-  <p>Mobile • Accessories • Repairing</p>
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Mobile, Accessories & Repairing</h1>
+    <p>
+      Check our available products and services.
+      For price, availability or pre-order, contact us directly on WhatsApp.
+    </p>
+  </div>
+</section>
 
-  <p>GitHub website test — WORKING ✓</p>
+<div class="search-area">
+  <div class="search-box">
+    🔍
+    <input
+      id="search"
+      type="search"
+      placeholder="Search mobile, accessory or repair..."
+    >
+  </div>
+</div>
+
+<main>
+
+  <div class="tabs">
+    <button class="tab active" data-section="MOBILE">📱 Mobiles</button>
+    <button class="tab" data-section="ACCESSORIES">🎧 Accessories</button>
+    <button class="tab" data-section="REPAIRING">🔧 Repairing</button>
+  </div>
+
+  <div id="filters" class="filters"></div>
+
+  <div id="content">
+    <div class="message">
+      <div class="spinner"></div>
+      Loading products...
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-title" id="footerShop">
+        SHRI SHYAM MOBILE & REPAIR
+      </div>
+      <div class="footer-text" id="footerTagline">
+        Mobile • Accessories • Repairing
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-text" id="footerAddress"></div>
+      <div class="footer-text" id="footerPhone"></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+
+/* =========================================================
+   GOOGLE SHEET
+========================================================= */
+
+const SHEET_ID =
+  "1bad8TO5Ek1sEIpCfUaRZGRHuCvVjNKqadXPmsUEzhds";
+
+const SHEETS = {
+  MOBILE: "MOBILE",
+  ACCESSORIES: "ACCESSORIES",
+  REPAIRING: "REPAIRING",
+  CATEGORY: "CATEGORY",
+  WEB_SETTINGS: "WEB_SETTINGS"
+};
+
+
+/* =========================================================
+   APP STATE
+========================================================= */
+
+let DATA = {
+  MOBILE: [],
+  ACCESSORIES: [],
+  REPAIRING: [],
+  CATEGORY: [],
+  WEB_SETTINGS: {}
+};
+
+let currentSection = "MOBILE";
+let currentBrand = "ALL";
+
+
+/* =========================================================
+   GOOGLE GVIZ READER
+========================================================= */
+
+async function readSheet(sheetName){
+
+  const url =
+    "https://docs.google.com/spreadsheets/d/" +
+    SHEET_ID +
+    "/gviz/tq?tqx=out:json&sheet=" +
+    encodeURIComponent(sheetName);
+
+  const response = await fetch(url);
+
+  if(!response.ok){
+    throw new Error("Could not read " + sheetName);
+  }
+
+  const text = await response.text();
+
+  const start = text.indexOf("{");
+  const end = text.lastIndexOf("}");
+
+  if(start === -1 || end === -1){
+    throw new Error("Invalid Google Sheet response");
+  }
+
+  const json = JSON.parse(text.substring(start,end + 1));
+
+  const cols = json.table.cols.map(c =>
+    (c.label || "").trim()
+  );
+
+  return json.table.rows.map(row => {
+
+    const obj = {};
+
+    cols.forEach((col,i) => {
+      if(!col) return;
+
+      obj[col] =
+        row.c[i] && row.c[i].v !== null
+          ? row.c[i].v
+          : "";
+    });
+
+    return obj;
+  });
+}
+
+
+/* =========================================================
+   NORMALIZE COLUMN NAMES
+========================================================= */
+
+function getValue(row, names){
+
+  const keys = Object.keys(row);
+
+  for(const wanted of names){
+
+    const found = keys.find(k =>
+      k.trim().toUpperCase() === wanted.toUpperCase()
+    );
+
+    if(found){
+      return row[found];
+    }
+  }
+
+  return "";
+}
+
+
+function numberValue(value){
+
+  if(value === null || value === undefined || value === ""){
+    return 0;
+  }
+
+  const n = Number(
+    String(value).replace(/,/g,"").replace(/[^\d.-]/g,"")
+  );
+
+  return isNaN(n) ? 0 : n;
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+function settingsObject(rows){
+
+  const obj = {};
+
+  rows.forEach(row => {
+
+    const key =
+      String(getValue(row,["SETTING","KEY","NAME"])).trim();
+
+    const value =
+      getValue(row,["VALUE","DATA"]);
+
+    if(key){
+      obj[key.toUpperCase()] = value;
+    }
+
+  });
+
+  return obj;
+}
+
+
+/* =========================================================
+   CATEGORY / BRAND
+========================================================= */
+
+function buildCategoryMap(rows){
+
+  const map = {};
+
+  rows.forEach(row => {
+
+    const name =
+      String(getValue(row,[
+        "CATEGORY",
+        "BRAND",
+        "NAME"
+      ])).trim();
+
+    const id =
+      String(getValue(row,[
+        "IDM",
+        "ID",
+        "CODE"
+      ])).trim();
+
+    if(name){
+      map[id || name] = name;
+    }
+
+  });
+
+  return map;
+}
+
+
+function getBrand(row){
+
+  const direct =
+    String(getValue(row,[
+      "BRAND",
+      "COMPANY",
+      "MAKE"
+    ])).trim();
+
+  if(direct) return direct;
+
+  const category =
+    String(getValue(row,[
+      "CATEGORY",
+      "BRAND ID",
+      "CATEGORY ID",
+      "IDM"
+    ])).trim();
+
+  if(DATA.categoryMap && DATA.categoryMap[category]){
+    return DATA.categoryMap[category];
+  }
+
+  return "";
+}
+
+
+/* =========================================================
+   IMAGES
+========================================================= */
+
+function getImages(row){
+
+  const images = [];
+
+  for(let i=1;i<=5;i++){
+
+    const value = getValue(row,[
+      "IMAGE-" + i,
+      "IMAGE-" + i + " ",
+      "IMAGE_" + i,
+      "IMAGE_" + i + " "
+    ]);
+
+    if(value && String(value).trim()){
+      images.push(String(value).trim());
+    }
+  }
+
+  return images;
+}
+
+
+/* =========================================================
+   WHATSAPP
+========================================================= */
+
+function whatsapp(message){
+
+  const phone =
+    String(DATA.settings.WHATSAPP ||
+           DATA.settings.PHONE ||
+           "9565772595")
+      .replace(/\D/g,"");
+
+  const url =
+    "https://wa.me/91" +
+    phone +
+    "?text=" +
+    encodeURIComponent(message);
+
+  window.open(url,"_blank");
+}
+
+
+/* =========================================================
+   PRODUCT MESSAGE
+========================================================= */
+
+function productWhatsApp(row){
+
+  const name =
+    getValue(row,[
+      "PRODUCT",
+      "PRODUCT NAME",
+      "NAME",
+      "MODEL",
+      "ITEM"
+    ]);
+
+  const brand = getBrand(row);
+
+  const ram =
+    getValue(row,["RAM"]);
+
+  const storage =
+    getValue(row,[
+      "STORAGE",
+      "ROM"
+    ]);
+
+  const price =
+    getValue(row,[
+      "PRICE",
+      "SELLING PRICE",
+      "SALE PRICE"
+    ]);
+
+  const qty =
+    numberValue(getValue(row,[
+      "QTY",
+      "QUANTITY",
+      "STOCK"
+    ]));
+
+  let message =
+    "Hello, I am interested in this item:\n\n" +
+    "Product: " + name;
+
+  if(brand){
+    message += "\nBrand: " + brand;
+  }
+
+  if(ram){
+    message += "\nRAM: " + ram;
+  }
+
+  if(storage){
+    message += "\nStorage: " + storage;
+  }
+
+  if(price){
+    message += "\nPrice: ₹" + price;
+  }
+
+  if(qty <= 0){
+    message +=
+      "\n\nThis item is currently OUT OF STOCK." +
+      "\nPlease check availability / pre-order.";
+  }else{
+    message += "\n\nPlease confirm availability.";
+  }
+
+  whatsapp(message);
+}
+
+
+/* =========================================================
+   REPAIR MESSAGE
+========================================================= */
+
+function repairWhatsApp(row){
+
+  const service =
+    getValue(row,[
+      "SERVICE",
+      "PRODUCT",
+      "NAME",
+      "REPAIR"
+    ]);
+
+  const askModel =
+    String(getValue(row,[
+      "ASK_MODEL",
+      "ASK MODEL"
+    ])).toLowerCase();
+
+  let message =
+    "Hello, I want to enquire about mobile repairing.\n\n" +
+    "Service: " + service;
+
+  if(askModel !== "no"){
+    message += "\nMy mobile model is: ";
+  }
+
+  whatsapp(message);
+}
+
+
+/* =========================================================
+   FORMAT PRICE
+========================================================= */
+
+function money(value){
+
+  const n = numberValue(value);
+
+  if(!n) return "";
+
+  return "₹" + n.toLocaleString("en-IN");
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+function productCard(row){
+
+  const name =
+    getValue(row,[
+      "PRODUCT",
+      "PRODUCT NAME",
+      "NAME",
+      "MODEL",
+      "ITEM"
+    ]) || "Product";
+
+  const brand = getBrand(row);
+
+  const ram =
+    getValue(row,["RAM"]);
+
+  const storage =
+    getValue(row,[
+      "STORAGE",
+      "ROM"
+    ]);
+
+  const price =
+    getValue(row,[
+      "PRICE",
+      "SELLING PRICE",
+      "SALE PRICE"
+    ]);
+
+  const mrp =
+    getValue(row,[
+      "MRP",
+      "MAX PRICE"
+    ]);
+
+  const qty =
+    numberValue(getValue(row,[
+      "QTY",
+      "QUANTITY",
+      "STOCK"
+    ]));
+
+  const images = getImages(row);
+
+  const image = images.length ? images[0] : "";
+
+  const stockClass =
+    qty > 0 ? "in" : "out";
+
+  const stockText =
+    qty > 0 ? "IN STOCK" : "OUT OF STOCK";
+
+  let specs = [];
+
+  if(ram) specs.push(ram);
+  if(storage) specs.push(storage);
+
+  return `
+    <article class="card">
+
+      <div class="image-wrap">
+
+        ${
+          image
+          ? `<img
+              src="${escapeHtml(image)}"
+              alt="${escapeHtml(name)}"
+              loading="lazy"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+            >
+            <div class="placeholder" style="display:none">
+              No Image
+            </div>`
+          : `<div class="placeholder">No Image</div>`
+        }
+
+        <div class="stock ${stockClass}">
+          ${stockText}
+        </div>
+
+      </div>
+
+      <div class="card-body">
+
+        ${
+          brand
+          ? `<div class="brand">${escapeHtml(brand)}</div>`
+          : ""
+        }
+
+        <div class="name">
+          ${escapeHtml(name)}
+        </div>
+
+        ${
+          specs.length
+          ? `<div class="specs">${escapeHtml(specs.join(" • "))}</div>`
+          : ""
+        }
+
+        ${
+          price
+          ? `
+            <div class="price">
+              ${money(price)}
+              ${
+                mrp
+                ? `<span class="mrp">${money(mrp)}</span>`
+                : ""
+              }
+            </div>
+          `
+          : ""
+        }
+
+        <button
+          class="wa-btn"
+          onclick='productWhatsApp(${JSON.stringify(row)})'
+        >
+          💬 INQUIRE ON WHATSAPP
+        </button>
+
+      </div>
+
+    </article>
+  `;
+}
+
+
+/* =========================================================
+   REPAIR CARD
+========================================================= */
+
+function repairCard(row){
+
+  const service =
+    getValue(row,[
+      "SERVICE",
+      "PRODUCT",
+      "NAME",
+      "REPAIR"
+    ]) || "Repair Service";
+
+  return `
+    <article class="repair-card">
+
+      <h3>🔧 ${escapeHtml(service)}</h3>
+
+      <p>
+        Contact us on WhatsApp for repair cost,
+        availability and details.
+      </p>
+
+      <button
+        class="wa-btn"
+        onclick='repairWhatsApp(${JSON.stringify(row)})'
+      >
+        💬 INQUIRE ON WHATSAPP
+      </button>
+
+    </article>
+  `;
+}
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+function renderFilters(){
+
+  const box =
+    document.getElementById("filters");
+
+  if(currentSection !== "MOBILE"){
+    box.innerHTML = "";
+    return;
+  }
+
+  const brands = [
+    ...new Set(
+      DATA.MOBILE
+        .map(getBrand)
+        .filter(Boolean)
+    )
+  ].sort();
+
+  if(!brands.length){
+    box.innerHTML = "";
+    return;
+  }
+
+  box.innerHTML = `
+    <button
+      class="filter ${currentBrand === "ALL" ? "active" : ""}"
+      onclick="setBrand('ALL')"
+    >
+      All Brands
+    </button>
+
+    ${
+      brands.map(brand => `
+        <button
+          class="filter ${currentBrand === brand ? "active" : ""}"
+          onclick='setBrand(${JSON.stringify(brand)})'
+        >
+          ${escapeHtml(brand)}
+        </button>
+      `).join("")
+    }
+  `;
+}
+
+
+function setBrand(brand){
+
+  currentBrand = brand;
+
+  renderFilters();
+  renderContent();
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+function renderContent(){
+
+  const box =
+    document.getElementById("content");
+
+  const search =
+    document.getElementById("search")
+      .value
+      .trim()
+      .toLowerCase();
+
+  let rows =
+    DATA[currentSection] || [];
+
+  if(currentSection === "MOBILE" &&
+     currentBrand !== "ALL"){
+
+    rows =
+      rows.filter(row =>
+        getBrand(row) === currentBrand
+      );
+  }
+
+  if(search){
+
+    rows =
+      rows.filter(row =>
+        JSON.stringify(row)
+          .toLowerCase()
+          .includes(search)
+      );
+  }
+
+  if(!rows.length){
+
+    box.innerHTML = `
+      <div class="message">
+        No items found.
+      </div>
+    `;
+
+    return;
+  }
+
+  if(currentSection === "REPAIRING"){
+
+    box.innerHTML = `
+      <div class="grid">
+        ${rows.map(repairCard).join("")}
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML = `
+    <div class="grid">
+      ${rows.map(productCard).join("")}
+    </div>
+  `;
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+/* =========================================================
+   LOAD DATA
+========================================================= */
+
+async function loadData(){
+
+  try{
+
+    const [
+      mobile,
+      accessories,
+      repairing,
+      category,
+      settings
+    ] = await Promise.all([
+
+      readSheet(SHEETS.MOBILE),
+      readSheet(SHEETS.ACCESSORIES),
+      readSheet(SHEETS.REPAIRING),
+      readSheet(SHEETS.CATEGORY),
+      readSheet(SHEETS.WEB_SETTINGS)
+
+    ]);
+
+    DATA.MOBILE = mobile;
+    DATA.ACCESSORIES = accessories;
+    DATA.REPAIRING = repairing;
+    DATA.CATEGORY = category;
+    DATA.settings = settingsObject(settings);
+
+    DATA.categoryMap =
+      buildCategoryMap(category);
+
+    /* SHOP SETTINGS */
+
+    const shop =
+      DATA.settings.SHOP_NAME ||
+      "SHRI SHYAM MOBILE & REPAIR";
+
+    const tagline =
+      DATA.settings.TAGLINE ||
+      "Mobile • Accessories • Repairing";
+
+    document.title = shop;
+
+    document.querySelector(".logo").innerHTML =
+      escapeHtml(shop);
+
+    document.getElementById("headerTagline")
+      .textContent = tagline;
+
+    document.getElementById("footerShop")
+      .textContent = shop;
+
+    document.getElementById("footerTagline")
+      .textContent = tagline;
+
+    document.getElementById("footerAddress")
+      .textContent =
+        DATA.settings.ADDRESS || "";
+
+    document.getElementById("footerPhone")
+      .textContent =
+        DATA.settings.PHONE
+          ? "📞 " + DATA.settings.PHONE
+          : "";
+
+    renderFilters();
+    renderContent();
+
+  }catch(error){
+
+    console.error(error);
+
+    document.getElementById("content").innerHTML = `
+      <div class="message">
+
+        <h3>Unable to load products</h3>
+
+        <p style="margin-top:8px">
+          Please try again in a moment.
+        </p>
+
+        <p style="margin-top:8px;font-size:12px;color:#aaa">
+          Google Sheet connection error
+        </p>
+
+      </div>
+    `;
+  }
+}
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+document.querySelectorAll(".tab")
+.forEach(button => {
+
+  button.addEventListener("click",() => {
+
+    document.querySelectorAll(".tab")
+      .forEach(b => b.classList.remove("active"));
+
+    button.classList.add("active");
+
+    currentSection =
+      button.dataset.section;
+
+    currentBrand = "ALL";
+
+    renderFilters();
+    renderContent();
+
+  });
+
+});
+
+
+document.getElementById("search")
+.addEventListener("input",renderContent);
+
+
+/* =========================================================
+   START
+========================================================= */
+
+loadData();
+
+</script>
 
 </body>
 </html>
